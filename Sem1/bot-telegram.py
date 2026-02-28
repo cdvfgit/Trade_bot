@@ -1,6 +1,7 @@
 import ccxt  # DOCUMENTACION OFICIAL DE LA LIBRERIA: https://docs.ccxt.com/README
 import logging
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
@@ -56,7 +57,7 @@ if __name__ ==  "__main__":
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("btc", btc))
 
-    app.infinity_polling(timeout=10, long_polling_timeout=5)
+    app.run_polling()
 
 
 
