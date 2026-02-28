@@ -14,6 +14,8 @@ USER = os.getenv("USER")
 
 def precio_btc():
 
+    print("Obteniendo precio")
+
     # Instanciar el exchange
     binance = ccxt.binance()
 
@@ -37,6 +39,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def btc(update: Update, contex: ContextTypes.DEFAULT_TYPE):
 
+    print("LLamando para obtener precio")
+
     try:
 
         precio = precio_btc()
@@ -52,7 +56,7 @@ if __name__ ==  "__main__":
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("btc", btc))
 
-    app.run_polling()
+    app.infinity_polling(timeout=10, long_polling_timeout=5)
 
 
 
