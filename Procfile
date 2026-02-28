@@ -1,1 +1,1 @@
-worker: python sem1/bot-telegram.py
+worker: python Sem1/bot-telegram.py
