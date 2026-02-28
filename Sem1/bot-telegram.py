@@ -16,15 +16,17 @@ USER = os.getenv("USER")
 def precio_btc():
 
     print("Obteniendo precio")
+    try:
+        # Instanciar el exchange
+        binance = ccxt.binance()
 
-    # Instanciar el exchange
-    binance = ccxt.binance()
-
-    # Obtener el precio actual de Bitcoin
-    ticker = binance.fetch_ticker('BTC/USDT')
-    print(f"Precio actual: {ticker['last']}")
-    print(f"ticker: {ticker}")
-    print(f"tipo: {type(ticker)}")
+        # Obtener el precio actual de Bitcoin
+        ticker = binance.fetch_ticker('BTC/USDT')
+        print(f"Precio actual: {ticker['last']}")
+        print(f"ticker: {ticker}")
+        print(f"tipo: {type(ticker)}")
+    except Exception as e:
+        print(f"Error al intentar acceder a la api binance: {e}")
 
     return ticker
 
