@@ -41,14 +41,19 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("¡Hola! Soy tu bot de Telegram.")
 
 async def btc(update: Update, contex: ContextTypes.DEFAULT_TYPE):
-
     print("LLamando para obtener precio")
-
     try:
-
         precio = precio_btc()
         await update.message.reply_text(f"este es el precio del BTC actualmente: {precio['last']} $")
+    except Exception as e:
+        print(f"erorr al intentar obtener el precio del bitcoin: {e}")
 
+
+async def alerta_precio(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    print("LLamando para obtener precio")
+    try:
+        precio = precio_btc()
+        await update.message.reply_text(f"este es el precio del BTC actualmente: {precio['last']} $")
     except Exception as e:
         print(f"erorr al intentar obtener el precio del bitcoin: {e}")
 
@@ -58,6 +63,8 @@ if __name__ ==  "__main__":
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("btc", btc))
+
+
 
     app.run_polling()
 
